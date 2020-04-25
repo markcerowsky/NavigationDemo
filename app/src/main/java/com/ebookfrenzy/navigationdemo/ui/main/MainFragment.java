@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ebookfrenzy.navigationdemo.R;
+import android.widget.Button;
+import androidx.navigation.Navigation;
 
 public class MainFragment extends Fragment {
 
@@ -34,6 +36,7 @@ public class MainFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         // TODO: Use the ViewModel
+        Button button = getView().findViewById(R.id.button);
+        button.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.mainToSecond, null));
     }
-
 }
