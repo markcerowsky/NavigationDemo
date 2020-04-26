@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.ebookfrenzy.navigationdemo.R;
 import android.widget.Button;
 import androidx.navigation.Navigation;
+import android.widget.EditText;
 
 public class MainFragment extends Fragment {
 
@@ -37,6 +38,19 @@ public class MainFragment extends Fragment {
         mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         // TODO: Use the ViewModel
         Button button = getView().findViewById(R.id.button);
-        button.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.mainToSecond, null));
+        //button.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.mainToSecond, null));
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText userText = getView().findViewById(R.id.userText);
+
+                MainFragmentDirections.MainToSecond action;
+                action = MainFragmentDirections.mainToSecond();
+
+                action.setMessage(userText.getText().toString());
+
+                Navigation.findNavController(view).navigate(action);
+            }
+        });
     }
 }

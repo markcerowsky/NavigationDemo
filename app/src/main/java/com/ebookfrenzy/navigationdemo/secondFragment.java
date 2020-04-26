@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.net.Uri;
-
+import android.widget.TextView;
 
 
 
@@ -69,4 +69,15 @@ public class secondFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+
+        TextView argText = getView().findViewById(R.id.argText);
+        secondFragmentArgs args = secondFragmentArgs.fromBundle(getArguments());
+        String message = args.getMessage();
+        argText.setText(message);
+    }
 }
+
